@@ -10,7 +10,7 @@ resource "aws_vpc" "vpc" {
 
 #internet Gateway Creation and attachment to VPC
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id     = aws_vpc.vpc.id
   tags = {
     Name = "igw"
   }
@@ -27,9 +27,9 @@ resource "aws_eip" "nat_eip" {
 # NAT Gateway Creation , eip association and attachment to public subnet 
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.public_subnet-1.id
+  subnet_id = aws_subnet.subnet[var.subnet_names[0]].id # Attach NAT Gateway to the first public subnet
   tags = {
-    Name = "nat-gw"
+    Name = "nat-gw-1"
   }
 }
 

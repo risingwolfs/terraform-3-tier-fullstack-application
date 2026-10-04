@@ -1,104 +1,104 @@
 #public security=======================================================
-resource "aws_security_group" "public-sg" {
-  name        = "public-sg"
+resource "aws_security_group" "public_sg" {
+  name        = "public_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "public-sg"
+    Name = "public_sg"
   }
 }
-resource "aws_vpc_security_group_ingress_rule" "public-sg-inbound" {
-  security_group_id = aws_security_group.public-sg.id
+resource "aws_vpc_security_group_ingress_rule" "public_sg_inbound" {
+  security_group_id = aws_security_group.public_sg.id
   cidr_ipv4         = aws_vpc.vpc.cidr_block
-#   from_port         = 443
-#   ip_protocol       = "tcp"
-#   to_port           = 443
-    ip_protocol = "-1" # allow all ports
+  #   from_port         = 443
+  #   ip_protocol       = "tcp"
+  #   to_port           = 443
+  ip_protocol = "-1" # allow all ports
 }
 
-resource "aws_vpc_security_group_egress_rule" "public-sg-outbound" {
-  security_group_id = aws_security_group.public-sg.id
+resource "aws_vpc_security_group_egress_rule" "public_sg_outbound" {
+  security_group_id = aws_security_group.public_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
 #frontend security group 
-resource "aws_security_group" "frontend-sg" {
-  name        = "frontend-sg"
+resource "aws_security_group" "frontend_sg" {
+  name        = "frontend_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "frontend-sg"
+    Name = "frontend_sg"
   }
 }
-resource "aws_vpc_security_group_ingress_rule" "frontend-sg-inbound" {
-  security_group_id = aws_security_group.frontend-sg.id
+resource "aws_vpc_security_group_ingress_rule" "frontend_sg_inbound" {
+  security_group_id = aws_security_group.frontend_sg.id
   cidr_ipv4         = aws_vpc.vpc.cidr_block
-#   from_port         = 443
-#   ip_protocol       = "tcp"
-#   to_port           = 443
-    ip_protocol = "-1" # allow all ports
+  #   from_port         = 443
+  #   ip_protocol       = "tcp"
+  #   to_port           = 443
+  ip_protocol = "-1" # allow all ports
 }
 
-resource "aws_vpc_security_group_egress_rule" "frontend-sg-outbound" {
-  security_group_id = aws_security_group.frontend-sg.id
+resource "aws_vpc_security_group_egress_rule" "frontend_sg_outbound" {
+  security_group_id = aws_security_group.frontend_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
 
 #backend security group =========================================================================
-resource "aws_security_group" "backend-sg" {
-  name        = "backend-sg"
+resource "aws_security_group" "backend_sg" {
+  name        = "backend_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "backend-sg"
+    Name = "backend_sg"
   }
 }
-resource "aws_vpc_security_group_ingress_rule" "backend-sg-inbound" {
-  security_group_id = aws_security_group.backend-sg.id
+resource "aws_vpc_security_group_ingress_rule" "backend_sg_inbound" {
+  security_group_id = aws_security_group.backend_sg.id
   cidr_ipv4         = aws_vpc.vpc.cidr_block
-#   from_port         = 443
-#   ip_protocol       = "tcp"
-#   to_port           = 443
-    ip_protocol = "-1" # allow all ports
+  #   from_port         = 443
+  #   ip_protocol       = "tcp"
+  #   to_port           = 443
+  ip_protocol = "-1" # allow all ports
 }
 
-resource "aws_vpc_security_group_egress_rule" "backend-sg-outbound" {
-  security_group_id = aws_security_group.backend-sg.id
+resource "aws_vpc_security_group_egress_rule" "backend_sg_outbound" {
+  security_group_id = aws_security_group.backend_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
 #database security group ================================================================
-resource "aws_security_group" "database-sg" {
-  name        = "database-sg"
+resource "aws_security_group" "database_sg" {
+  name        = "database_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "database-sg"
+    Name = "database_sg"
   }
 }
-resource "aws_vpc_security_group_ingress_rule" "database-sg-inbound" {
-  security_group_id = aws_security_group.database-sg.id
+resource "aws_vpc_security_group_ingress_rule" "database_sg_inbound" {
+  security_group_id = aws_security_group.database_sg.id
   cidr_ipv4         = aws_vpc.vpc.cidr_block
-#   from_port         = 443
-#   ip_protocol       = "tcp"
-#   to_port           = 443
-    ip_protocol = "-1" # allow all ports
+  #   from_port         = 443
+  #   ip_protocol       = "tcp"
+  #   to_port           = 443
+  ip_protocol = "-1" # allow all ports
 }
 output "database_sg_id" {
-  value = aws_security_group.backend-sg.id
+  value = aws_security_group.backend_sg.id
 }
 
 
-resource "aws_vpc_security_group_egress_rule" "database-sg-outbound" {
-  security_group_id = aws_security_group.database-sg.id
+resource "aws_vpc_security_group_egress_rule" "database_sg_outbound" {
+  security_group_id = aws_security_group.database_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
