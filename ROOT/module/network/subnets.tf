@@ -19,3 +19,4 @@ resource "aws_subnet" "subnet" {
     Name = each.key #subnet name will be used as the tag value for the Name tag from the subnet_names variable
   }
 }
+

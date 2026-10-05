@@ -1,4 +1,4 @@
-#public security=======================================================
+#public security group =======================================================
 resource "aws_security_group" "public_sg" {
   name        = "public_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
@@ -23,7 +23,7 @@ resource "aws_vpc_security_group_egress_rule" "public_sg_outbound" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
-#frontend security group 
+#frontend security group ===================================================================
 resource "aws_security_group" "frontend_sg" {
   name        = "frontend_sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
@@ -92,10 +92,6 @@ resource "aws_vpc_security_group_ingress_rule" "database_sg_inbound" {
   #   to_port           = 443
   ip_protocol = "-1" # allow all ports
 }
-output "database_sg_id" {
-  value = aws_security_group.backend_sg.id
-}
-
 
 resource "aws_vpc_security_group_egress_rule" "database_sg_outbound" {
   security_group_id = aws_security_group.database_sg.id

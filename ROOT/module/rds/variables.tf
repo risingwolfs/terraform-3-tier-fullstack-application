@@ -2,7 +2,7 @@ variable "db_subnet_group_name" {
   default = ""
 }
 #collecting multiple subnet_ids of database_subnets in a list 
-variable "subnet_ids" {
+variable "db_subnet_ids" {
   type = list(string)
 }
 

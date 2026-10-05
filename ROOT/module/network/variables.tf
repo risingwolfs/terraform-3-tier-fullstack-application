@@ -11,6 +11,7 @@ variable "vpc_name" {
   default     = ""
 }
 
+# =========================================================
 variable "subnet_ciders" {
   description = "The CIDR block for the subnet"
   type        = list(string)
