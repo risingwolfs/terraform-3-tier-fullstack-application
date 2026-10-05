@@ -11,5 +11,4 @@ terraform {
 
 provider "aws" {
   region  = "us-east-1"
-  profile = "Dev" # Dev profile is used to create the resources in AWS Dev account.
 }
